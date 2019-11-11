@@ -58,7 +58,7 @@ else:
 
     # replace missing values with the median of all values
     # in each feature column
-    data[feature_cols].fillna(data[feature_cols].dropna().median())
+    data[feature_cols].fillna(data[feature_cols].dropna().median(), inplace=True)
 
     # separate features and labels and OHE encode labels
     # We could use column slicing like this:
