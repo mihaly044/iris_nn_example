@@ -1,7 +1,7 @@
 from os import path
 from keras.engine.saving import model_from_json
 from pandas import read_csv, get_dummies, DataFrame
-from keras import models, layers, optimizers, regularizers
+from keras import models, layers, optimizers
 from matplotlib.pyplot import figure, ylabel, plot, legend, show, xlabel
 from numpy import reshape, argmax, ndarray
 
@@ -48,6 +48,9 @@ if path.isfile(model_struct_f) and path.isfile(weights_f):
 else:
     # Load data from the internet
     data = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None)
+
+    # Shuffle data to avoid overfitting
+    data = data.sample(frac=1).reset_index(drop=True)
 
     # Let's take a look at our data
     print(data.head(10))
